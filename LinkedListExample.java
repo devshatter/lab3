@@ -26,6 +26,7 @@ class LinkedList {
      * Adds the value to the _end_ of the list
      * @param value
      */
+    /* broken append
     public void append(int value) {
         if(this.root == null) {
             this.root = new Node(value, null);
@@ -42,6 +43,25 @@ class LinkedList {
             n = n.next;
             n.next = new Node(value, null);
         }
+    }
+    */
+    public void append(int value) {
+        if(this.root == null) {
+            this.root = new Node(value, null);
+            return;
+        }
+        // If it's just one element, add if after that one
+        Node n = this.root;
+        if(n.next == null) {
+            n.next = new Node(value, null);
+            return;
+        }
+        // Otherwise, loop until the end and add at the end with a null
+        while(n.next != null) {
+            n = n.next;
+            
+        }
+        n.next = new Node(value, null);
     }
     /**
      * @return the value of the first element in the list
