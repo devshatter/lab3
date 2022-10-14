@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class FileExample {
 
@@ -37,7 +38,7 @@ public class FileExample {
   See the File documentation here: https://docs.oracle.com/javase/8/docs/api/java/io/File.html
 
   */
-
+/* Bad Code 
 	static List<File> getFiles(File start) throws IOException {
 	  File f = start;
 	  List<File> result = new ArrayList<>();
@@ -50,6 +51,26 @@ public class FileExample {
 	  }
 	  return result;
 	}
+  */
+  static List<File> getFiles(File start) throws IOException {
+	  
+	  List<File> result = new ArrayList<>();
+	  Stack<File> stack = new Stack<File>();
+    stack.add(start);
+    while (!stack.isEmpty()) {
+      File file = stack.pop();
+      if (file.isDirectory()) {
+        for (File f : file.listFiles()) {
+          stack.push(f);
+        }
+      } else {
+        result.add(file);
+      }
+    }
+    
+	  return result;
+	}
+
 }
 
 
